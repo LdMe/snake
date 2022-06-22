@@ -37,7 +37,7 @@ possible_path_number = path.get_num_paths(path.snake,path.depth)
 ```
 Where snake_body is a list of bidimensional positions, board is a bidimensional list and depth is an integer.
 
-Example:
+#### Example:
 
 ```
 from path import Path
@@ -51,7 +51,7 @@ possible_path_number = path.get_num_paths(path.snake,path.depth)
 print(possible_path_number)
 
 ```
-output:
+#### Output:
 
 ```
 7
@@ -69,7 +69,7 @@ possible_paths = path.run(path.snake,path.depth)
 
 ```
 
-Example:
+#### Example:
 
 ```
 from path import Path
@@ -83,7 +83,7 @@ possible_paths = path.run(path.snake,path.depth)
 print(possible_paths)
 
 ```
-Output:
+#### Output:
 ```
 ['LUL', 'LUR', 'LUU', 'ULL', 'ULU', 'ULD', 'UUL']
 ```
