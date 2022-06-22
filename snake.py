@@ -11,13 +11,21 @@ class Snake:
 
     def move(self,direction):
         new_head = self.add_direction(self.body[0],direction)
-        if(self.is_out_of_bounds(new_head)):
-            return -1
-        if(self.intersects(new_head)):
-            return -1
-        self.move_body(new_head)
-        return 1
+        if(self.can_move(direction)):
+            self.move_body(new_head)
+            return 1
+        return -1
 
+    def can_move(self,direction):
+        new_head = self.add_direction(self.body[0],direction)
+        if(self.is_out_of_bounds(new_head)):
+            return False
+        if(self.intersects(new_head)):
+            return False
+
+        return True
+        
+        
     def add_direction(self,position,direction):
         direction_values = direction.value
         new_position = [position[0] + direction_values[0],position[1] +  direction_values[1] ]
@@ -48,6 +56,12 @@ class Snake:
             return True
         return False
 
+    def copy(self):
+        new_body = []
+        for body_part in self.body:
+            new_body.append(body_part.copy())
+        new_Snake = Snake(new_body,[self.max_y,self.max_x])
+        return new_Snake
     def __str__(self):
         return str(self.body)
 

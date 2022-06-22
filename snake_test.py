@@ -39,7 +39,29 @@ class SnakeTest(unittest.TestCase):
         self.assertEqual(self.snake.add_direction([0,0],Direction.D),[1,0])
         self.assertEqual(self.snake.add_direction([0,0],Direction.L),[0,-1])
         self.assertEqual(self.snake.add_direction([0,0],Direction.R),[0,1])
-      
+
+    def test_can_move(self):
+        self.setUp()
+        self.assertTrue(self.snake.can_move(Direction.U))
+        self.assertEqual(self.snake.body,[[2,2], [3,2], [3,1], [3,0], [2,0], [1,0], [0,0]])
+
+        self.setUp()
+        self.assertFalse(self.snake.can_move(Direction.D))   
+        self.assertEqual(self.snake.body,[[2,2], [3,2], [3,1], [3,0], [2,0], [1,0], [0,0]])
+
+        self.setUp()
+        self.assertTrue(self.snake.can_move(Direction.L))  
+        self.assertEqual(self.snake.body,[[2,2], [3,2], [3,1], [3,0], [2,0], [1,0], [0,0]])
+
+        self.setUp()
+        self.assertFalse(self.snake.can_move(Direction.R))  
+        self.assertEqual(self.snake.body,[[2,2], [3,2], [3,1], [3,0], [2,0], [1,0], [0,0]])
+
+        self.snake = Snake([[1, 2], [2, 2], [3, 2], [3, 1], [3, 0], [2, 0], [1, 0]],[4, 3])
+        self.assertFalse(self.snake.can_move(Direction.R)) 
+        self.assertEqual(self.snake.body,[[1, 2], [2, 2], [3, 2], [3, 1], [3, 0], [2, 0], [1, 0]])
+ 
+
     def test_move(self):
         self.setUp()
         self.assertEqual(self.snake.move(Direction.U),1)
@@ -57,7 +79,13 @@ class SnakeTest(unittest.TestCase):
         self.assertEqual(self.snake.move(Direction.R),-1)  
         self.assertEqual(self.snake.body,[[2,2], [3,2], [3,1], [3,0], [2,0], [1,0], [0,0]])
 
-    
+    def test_copy(self):
+        self.setUp()
+        new_snake = self.snake.copy()
+        self.snake.move(Direction.U)
+        self.assertEqual(new_snake.body,[[2,2], [3,2], [3,1], [3,0], [2,0], [1,0], [0,0]])
+
+
 
 if __name__ == "__main__":
     unittest.main()
